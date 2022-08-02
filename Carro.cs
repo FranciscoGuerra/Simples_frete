@@ -9,22 +9,22 @@ namespace CalcularFrete
 {
     internal class Carro 
     {
-        public float Calcular(float distancia, float combustivel)
 
+       
+        
+        //public float Calcular(float distancia, float combustivel)
+
+        //{
+        //    float media = distancia / 12;
+        //    return combustivel = combustivel * media;
+
+        //}
+
+        public float Calcular(float distancia, float MediaCombustivel, float precoCombustivel) 
         {
-            float media = distancia / 12;
-            return combustivel = combustivel * media;
-
-        }
-
-        public void Exibir() 
-        {
-            FrmPrincipal fp = new FrmPrincipal();
-
-            
-
-
-
+            MediaCombustivel = distancia / 12;
+            precoCombustivel = precoCombustivel * MediaCombustivel;
+            return MediaCombustivel;
         }
     }
 }

@@ -9,3 +9,14 @@ C:\Users\NETO\source\repos\CalcularFrete\obj\Debug\CalcularFrete.csproj.CoreComp
 C:\Users\NETO\source\repos\CalcularFrete\obj\Debug\CalcularFrete.exe
 C:\Users\NETO\source\repos\CalcularFrete\obj\Debug\CalcularFrete.pdb
 C:\Users\NETO\source\repos\CalcularFrete\obj\Debug\CalcularFrete.FrmPrincipal.resources
+C:\Users\NETO\Documents\C#\CalcularFrete\bin\Debug\CalcularFrete.exe.config
+C:\Users\NETO\Documents\C#\CalcularFrete\bin\Debug\CalcularFrete.exe
+C:\Users\NETO\Documents\C#\CalcularFrete\bin\Debug\CalcularFrete.pdb
+C:\Users\NETO\Documents\C#\CalcularFrete\obj\Debug\CalcularFrete.csproj.AssemblyReference.cache
+C:\Users\NETO\Documents\C#\CalcularFrete\obj\Debug\CalcularFrete.csproj.SuggestedBindingRedirects.cache
+C:\Users\NETO\Documents\C#\CalcularFrete\obj\Debug\CalcularFrete.FrmPrincipal.resources
+C:\Users\NETO\Documents\C#\CalcularFrete\obj\Debug\CalcularFrete.Properties.Resources.resources
+C:\Users\NETO\Documents\C#\CalcularFrete\obj\Debug\CalcularFrete.csproj.GenerateResource.cache
+C:\Users\NETO\Documents\C#\CalcularFrete\obj\Debug\CalcularFrete.csproj.CoreCompileInputs.cache
+C:\Users\NETO\Documents\C#\CalcularFrete\obj\Debug\CalcularFrete.exe
+C:\Users\NETO\Documents\C#\CalcularFrete\obj\Debug\CalcularFrete.pdb

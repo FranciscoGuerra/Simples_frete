@@ -8,11 +8,11 @@ namespace CalcularFrete
 {
     internal class Caminhao
     {
-        public float Calcular(float distancia, float combustivel)
+        public float Calcular(float distancia, float MediaCombustivel, float precoCombustivel)
         {
-            combustivel = (float)(distancia / 3.5);
-            return combustivel;
-
+            MediaCombustivel = (float)(distancia / 3.5);
+            precoCombustivel = precoCombustivel * MediaCombustivel;
+            return MediaCombustivel;
         }
     }
 }

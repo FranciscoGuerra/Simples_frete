@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CalcularFrete
@@ -15,10 +8,17 @@ namespace CalcularFrete
     {
         float kmRodados = 0;
         float ValorCombustivel = 0;
-        float regraDeNegocio = 0;
+        float mediaCombustivel = 0;
+        float valorTotal=0;
+      
         public FrmPrincipal()
         {
             InitializeComponent();
+        }
+
+        public void exibir()
+        {
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -27,113 +27,106 @@ namespace CalcularFrete
         }
         private void ttxVeiculo_Leave(object sender, EventArgs e)
         {
-            txtVeiculo.Text.ToLower().Trim();
-
-            if (txtVeiculo.Text == "carro")
-            {
-                ImgVeiculos.Image = CalcularFrete.Properties.Resources.carro;
-            }
-            else if (txtVeiculo.Text == "caminhão")
-            {
-                ImgVeiculos.Image = CalcularFrete.Properties.Resources.caminhão;
-
-            }
-            else if (txtVeiculo.Text == "camin~hao")
-            {
-                ImgVeiculos.Image = CalcularFrete.Properties.Resources.caminhão;
-            }
-
-            else if (txtVeiculo.Text == "moto")
-            {
-                ImgVeiculos.Image = CalcularFrete.Properties.Resources.moto;
-            }
-            else
-            {
-                txtVeiculo.Text = "";
-                txtVeiculo.Focus(); return;
-            }
-
 
         }
 
-        private void txtVeiculo_TextChanged(object sender, EventArgs e)
-        {
-            txtVeiculo.Text = txtVeiculo.Text;
-            
-
-
-        }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
 
         {
             kmRodados = float.Parse(txtDistanciaKm.Text);
-            txtVeiculo.Text.ToLower().Trim();
+            ValorCombustivel = float.Parse(txtValorCombustivel.Text);
+            
+
+
+
+            //Calcular se for ida e volta.
             if (checkBox1IdaVolta.Checked)
             {
                 kmRodados = kmRodados * 2;
             }
-
+            // receber o valor do combustivel
             ValorCombustivel = float.Parse(txtValorCombustivel.Text);
 
-
-            switch (txtVeiculo.Text)
+            // opções para carro, moto e caminhão
+            switch (comboVeiculos.Text)
             {
-                case "carro":
+                case "Moto":
 
                     {
-                        Carro car = new Carro();
+                        mediaCombustivel = kmRodados / 35;
+                        
+                        Moto m = new Moto();
+                        m.Calcular(kmRodados, mediaCombustivel, ValorCombustivel);
+                        Exibir();
 
-                        string DesCombustiveis = car.Calcular(kmRodados,ValorCombustivel).ToString();
-                        txtKmRodados.Text = kmRodados.ToString();
+                        //txtConsumoCombustivel.Text = ("Litros:"+mediaCombustivel.ToString());
+                        //txtDespesasCombustivel.Text = (mediaCombustivel * ValorCombustivel).ToString();
+                        //txtKmRodados.Text = ("km:"+kmRodados.ToString());
+                        //txtCustoPorKm.Text = ("R$:", kmRodados / (mediaCombustivel * ValorCombustivel)).ToString();
 
-                        txtConsumoCombustivel.Text = (kmRodados / 12, "litros ").ToString();
-                        txtDespesasCombustivel.Text = ("R$:" + DesCombustiveis);
 
-                        float dp = Convert.ToSingle(DesCombustiveis);
-                        regraDeNegocio = Convert.ToSingle(comboTabela.Text);
-                        txtTotal.Text = (dp * regraDeNegocio).ToString();
+                        ////regra de negocio
+                        //// -> valor gasto da viagem- seria uma viagem para a empresa.
+                        ////-> multiplica os gastos por 2 - seria uma empresa parceira
+                        ////-> multiplica os gastos por 3- seria o valor normal cobrado.
+                        //if (comboTabela.SelectedIndex == 0) txtTotal.Text = ("R$", (mediaCombustivel * ValorCombustivel)).ToString();
+                        //else if (comboTabela.SelectedIndex == 1) txtTotal.Text = ("R$", (mediaCombustivel * ValorCombustivel) * 2).ToString();
 
-                        dp = dp / kmRodados;
-                        txtCustoPorKm.Text = dp.ToString();
-                       
-
+                        //else if (comboTabela.SelectedIndex == 2) txtTotal.Text = ("R$", (+mediaCombustivel * ValorCombustivel) * 3).ToString();
                         return;
+
+
                     }
 
-                case "moto":
+                case "Carro":
 
                     {
-                        Moto m = new Moto();
-                        string DesCombustiveis = m.Calcular(kmRodados, ValorCombustivel).ToString();
-                        txtKmRodados.Text = kmRodados.ToString();
+                        mediaCombustivel = kmRodados / 12;
+                        Carro car = new Carro();
+                        car.Calcular(kmRodados, mediaCombustivel, ValorCombustivel);
+                        Exibir();
 
-                        txtConsumoCombustivel.Text = (kmRodados / 35, "litros ").ToString();
-                        txtDespesasCombustivel.Text = ("R$:" + DesCombustiveis);
+                        //txtConsumoCombustivel.Text = ("Litros:" +mediaCombustivel.ToString());
+                        //txtDespesasCombustivel.Text = ("R$:",mediaCombustivel * ValorCombustivel).ToString();
+                        //txtKmRodados.Text = ("km:" + kmRodados.ToString());
+                        //txtCustoPorKm.Text = ("R$:" , kmRodados / (mediaCombustivel * ValorCombustivel)).ToString();
 
-                        float dp = Convert.ToSingle(DesCombustiveis);
-                        txtTotal.Text = (dp * 3).ToString();
 
-                        dp = dp / kmRodados;
-                        txtCustoPorKm.Text = dp.ToString();
+                        ////regra de negocio
+                        //// -> valor gasto da viagem- seria uma viagem para a empresa.
+                        ////-> multiplica os gastos por 2 - seria uma empresa parceira
+                        ////-> multiplica os gastos por 3- seria o valor normal cobrado.
+                        //if (comboTabela.SelectedIndex == 0) txtTotal.Text = ("R$", (mediaCombustivel * ValorCombustivel)).ToString();
+                        //else if (comboTabela.SelectedIndex == 1) txtTotal.Text = ("R$", (mediaCombustivel * ValorCombustivel) * 2).ToString();
+
+                        //else if (comboTabela.SelectedIndex == 2) txtTotal.Text = ("R$", (+mediaCombustivel * ValorCombustivel) * 3).ToString();
                         return;
 
                     }
                 default:
                     {
+                        mediaCombustivel =(float)(kmRodados / 3.5);
                         Caminhao c = new Caminhao();
-                        string DesCombustiveis = c.Calcular(kmRodados, ValorCombustivel).ToString();
-                        txtKmRodados.Text = kmRodados.ToString();
+                        c.Calcular(kmRodados, mediaCombustivel, ValorCombustivel);
+                        Exibir();
 
-                        txtConsumoCombustivel.Text = (kmRodados / 3.5, "litros ").ToString();
-                        txtDespesasCombustivel.Text = ("R$:" + DesCombustiveis);
+                        //txtConsumoCombustivel.Text = ("Litros:" + mediaCombustivel.ToString());
+                        //txtDespesasCombustivel.Text = ("R$:", mediaCombustivel * ValorCombustivel).ToString();
+                        //txtKmRodados.Text = ("km:" + kmRodados.ToString());
+                        //txtCustoPorKm.Text = ("R$" + kmRodados / (mediaCombustivel * ValorCombustivel)).ToString();
 
-                        float dp = Convert.ToSingle(DesCombustiveis);
-                        txtTotal.Text = (dp * 3).ToString();
 
-                        dp = dp / kmRodados;
-                        txtCustoPorKm.Text = dp.ToString();
+                        //regra de negocio
+                        // -> valor gasto da viagem- seria uma viagem para a empresa.
+                        //-> multiplica os gastos por 2 - seria uma empresa parceira
+                        //-> multiplica os gastos por 3- seria o valor normal cobrado.
+                        //if (comboTabela.SelectedIndex == 0) txtTotal.Text = ("R$", (mediaCombustivel * ValorCombustivel)).ToString();
+                        //else if (comboTabela.SelectedIndex == 1) txtTotal.Text = ("R$", (mediaCombustivel * ValorCombustivel) * 2).ToString();
+
+                        //else if (comboTabela.SelectedIndex == 2) txtTotal.Text = ("R$", (+mediaCombustivel * ValorCombustivel) * 3).ToString();
                         return;
+
 
                     }
 
@@ -145,6 +138,81 @@ namespace CalcularFrete
 
         private void label6_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void comboTabela_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboVeiculos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboVeiculos.SelectedIndex == 0)
+            {
+                ImgVeiculos.Image = CalcularFrete.Properties.Resources.moto;
+            }
+            else if (comboVeiculos.SelectedIndex == 1)
+            {
+                ImgVeiculos.Image = CalcularFrete.Properties.Resources.carro;
+
+            }
+
+            else if (comboVeiculos.SelectedIndex == 2)
+            {
+                ImgVeiculos.Image = CalcularFrete.Properties.Resources.caminhão;
+            }
+        }
+
+        private void txtConsumoCombustivel_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtValorCombustivel_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDespesasCombustivel_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        public void Exibir() 
+        {
+            txtConsumoCombustivel.Text = ("Litros:" + mediaCombustivel.ToString());
+            txtDespesasCombustivel.Text = ("R$:", mediaCombustivel * ValorCombustivel).ToString();
+            txtKmRodados.Text = ("km:" + kmRodados.ToString());
+            txtCustoPorKm.Text = ("R$" + kmRodados / (mediaCombustivel * ValorCombustivel)).ToString();
+
+
+            //regra de negocio
+            // -> valor gasto da viagem- seria uma viagem para a empresa.
+            //-> multiplica os gastos por 2 - seria uma empresa parceira
+            //-> multiplica os gastos por 3- seria o valor normal cobrado.
+            if (comboTabela.SelectedIndex == 0)
+            {
+                valorTotal = mediaCombustivel * ValorCombustivel;
+                txtCustoPorKm.Text = ("R$",valorTotal/kmRodados).ToString();
+                txtTotal.Text = ("R$:",valorTotal).ToString();
+            }
+               
+            else if (comboTabela.SelectedIndex == 1) 
+            {
+                valorTotal = (mediaCombustivel * ValorCombustivel) * 2;
+                txtCustoPorKm.Text = ("R$:",valorTotal / kmRodados).ToString();
+                txtTotal.Text = ("R$:",valorTotal).ToString();
+            }
+
+            else if (comboTabela.SelectedIndex == 2)
+            {
+                valorTotal = (mediaCombustivel * ValorCombustivel) * 3;
+                txtCustoPorKm.Text = ("R$:", valorTotal / kmRodados).ToString();
+                txtTotal.Text = ("R$:", valorTotal).ToString();
+            }
+    
+            return;
 
         }
     }

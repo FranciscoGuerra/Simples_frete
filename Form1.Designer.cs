@@ -41,11 +41,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtCustoPorKm = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtVeiculo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtKmRodados = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.comboVeiculos = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -83,6 +83,7 @@
             this.txtValorCombustivel.Name = "txtValorCombustivel";
             this.txtValorCombustivel.Size = new System.Drawing.Size(122, 20);
             this.txtValorCombustivel.TabIndex = 4;
+            this.txtValorCombustivel.TextChanged += new System.EventHandler(this.txtValorCombustivel_TextChanged);
             // 
             // txtLocalidade
             // 
@@ -97,6 +98,7 @@
             this.txtConsumoCombustivel.Name = "txtConsumoCombustivel";
             this.txtConsumoCombustivel.Size = new System.Drawing.Size(122, 20);
             this.txtConsumoCombustivel.TabIndex = 6;
+            this.txtConsumoCombustivel.TextChanged += new System.EventHandler(this.txtConsumoCombustivel_TextChanged);
             // 
             // txtDespesasCombustivel
             // 
@@ -104,6 +106,7 @@
             this.txtDespesasCombustivel.Name = "txtDespesasCombustivel";
             this.txtDespesasCombustivel.Size = new System.Drawing.Size(136, 20);
             this.txtDespesasCombustivel.TabIndex = 7;
+            this.txtDespesasCombustivel.TextChanged += new System.EventHandler(this.txtDespesasCombustivel_TextChanged);
             // 
             // comboTabela
             // 
@@ -116,6 +119,7 @@
             this.comboTabela.Name = "comboTabela";
             this.comboTabela.Size = new System.Drawing.Size(136, 21);
             this.comboTabela.TabIndex = 5;
+            this.comboTabela.SelectedIndexChanged += new System.EventHandler(this.comboTabela_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -168,15 +172,6 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Consumo de Combustivel";
             // 
-            // txtVeiculo
-            // 
-            this.txtVeiculo.Location = new System.Drawing.Point(52, 47);
-            this.txtVeiculo.Name = "txtVeiculo";
-            this.txtVeiculo.Size = new System.Drawing.Size(122, 20);
-            this.txtVeiculo.TabIndex = 1;
-            this.txtVeiculo.TextChanged += new System.EventHandler(this.txtVeiculo_TextChanged);
-            this.txtVeiculo.Leave += new System.EventHandler(this.ttxVeiculo_Leave);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -196,23 +191,23 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 31);
+            this.label1.Location = new System.Drawing.Point(49, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 13);
+            this.label1.Size = new System.Drawing.Size(48, 13);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Veiculo: carro,moto e caminhão";
+            this.label1.Text = "Veiculo: ";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panel1.Controls.Add(this.comboVeiculos);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.checkBox1IdaVolta);
             this.panel1.Controls.Add(this.comboTabela);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.txtVeiculo);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.txtDistanciaKm);
             this.panel1.Controls.Add(this.txtLocalidade);
@@ -222,6 +217,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(879, 200);
             this.panel1.TabIndex = 17;
+            // 
+            // comboVeiculos
+            // 
+            this.comboVeiculos.FormattingEnabled = true;
+            this.comboVeiculos.Items.AddRange(new object[] {
+            "Moto",
+            "Carro",
+            "Caminhão"});
+            this.comboVeiculos.Location = new System.Drawing.Point(51, 47);
+            this.comboVeiculos.Name = "comboVeiculos";
+            this.comboVeiculos.Size = new System.Drawing.Size(121, 21);
+            this.comboVeiculos.TabIndex = 21;
+            this.comboVeiculos.SelectedIndexChanged += new System.EventHandler(this.comboVeiculos_SelectedIndexChanged);
             // 
             // pictureBox1
             // 
@@ -343,7 +351,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtCustoPorKm;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtVeiculo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtKmRodados;
         private System.Windows.Forms.Label label1;
@@ -356,6 +363,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox ImgVeiculos;
+        private System.Windows.Forms.ComboBox comboVeiculos;
     }
 }
 
